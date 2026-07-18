@@ -1,0 +1,85 @@
+import { useState } from 'react'
+
+function App() {
+  const [pays, setPays] = useState('')
+  const [resultat, setResultat] = useState('')
+
+  const verifierVisa = () => {
+    if(pays === '') {
+      setResultat('⚠️ Veuillez entrer un pays de destination')
+    } else {
+      setResultat(`✅ Résultat pour ${pays} : Bientôt disponible avec l'IA !`)
+    }
+  }
+
+  return (
+    <div style={{
+      fontFamily: 'Arial, sans-serif',
+      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      minHeight: '100vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: '20px',
+      margin: 0
+    }}>
+      <div style={{
+        background: 'white',
+        padding: '40px 30px',
+        borderRadius: '20px',
+        boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
+        textAlign: 'center',
+        maxWidth: '500px',
+        width: '100%'
+      }}>
+        <h1 style={{color: '#667eea', fontSize: '32px', margin: '0 0 10px 0'}}>🌍 VisaCheckAI</h1>
+        <p style={{color: '#666', marginBottom: '30px'}}>Vérifiez si vous avez besoin d'un visa en 10 secondes</p>
+        
+        <div style={{display: 'flex', gap: '10px', flexDirection: 'column'}}>
+          <input 
+            type="text" 
+            placeholder="Ex: France, Canada, USA..."
+            value={pays}
+            onChange={(e) => setPays(e.target.value)}
+            style={{
+              padding: '15px',
+              border: '2px solid #667eea',
+              borderRadius: '10px',
+              fontSize: '16px'
+            }}
+          />
+          <button 
+            onClick={verifierVisa}
+            style={{
+              padding: '15px',
+              background: '#667eea',
+              color: 'white',
+              border: 'none',
+              borderRadius: '10px',
+              fontSize: '16px',
+              fontWeight: 'bold',
+              cursor: 'pointer'
+            }}
+          >
+            Vérifier maintenant
+          </button>
+        </div>
+
+        {resultat && 
+          <div style={{
+            marginTop: '20px',
+            padding: '15px',
+            background: '#f0f0ff',
+            borderRadius: '10px',
+            color: '#333',
+            fontWeight: 'bold'
+          }}>
+            {resultat}
+          </div>
+        }
+      </div>
+    </div>
+  )
+}
+
+export default App
